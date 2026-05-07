@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-950: #040714;
+  --color-brand-900: #071230;
+  --color-brand-800: #0A1F44;
+  --color-brand-700: #0F2D5E;
+  --color-brand-600: #143C7A;
+  --color-brand-500: #1A4C96;
+  --color-brand-400: #2A6BC4;
+  --color-brand-300: #5A92D8;
+  --color-brand-200: #8FB8E8;
+  --color-brand-100: #C4D8F2;
+  --color-brand-50: #EBF1FA;
+
+  --color-gold-700: #8B732B;
+  --color-gold-600: #A68A34;
+  --color-gold-500: #C9A84C;
+  --color-gold-400: #D4BA6E;
+  --color-gold-300: #E0CC90;
+  --color-gold-200: #ECDDB2;
+  --color-gold-100: #F5ECD4;
+  --color-gold-50: #FCF8ED;
+
+  --color-surface: #0A0F1E;
+  --color-surface-light: #111827;
+  --color-surface-mid: #1E293B;
+  --color-border: rgba(201, 168, 76, 0.15);
+  --color-border-light: rgba(255, 255, 255, 0.06);
+  --color-glass: rgba(255, 255, 255, 0.04);
+  --color-glass-hover: rgba(255, 255, 255, 0.08);
+  --color-gold-glow: rgba(201, 168, 76, 0.25);
+
+  --font-sans: var(--font-noto-kufi), system-ui, sans-serif;
+
+  --animate-appear: appear 0.5s ease-out forwards;
+  --animate-appear-zoom: appear-zoom 0.5s ease-out forwards;
 }
 
-@media (prefers-color-scheme: dark) {
+@keyframes appear {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes appear-zoom {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@utility delay-100 {
+  animation-delay: 100ms;
+}
+@utility delay-300 {
+  animation-delay: 300ms;
+}
+@utility delay-700 {
+  animation-delay: 700ms;
+}
+@utility delay-1000 {
+  animation-delay: 1000ms;
+}
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --brand: 31 97% 72%;
+    --brand-foreground: 27 96% 61%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: #F1F5F9;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-500);
+    color: var(--color-brand-950);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(201, 168, 76, 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 168, 76, 0.5);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C9A84C 0%, #F5ECD4 40%, #C9A84C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .glass-gold {
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(201, 168, 76, 0.02));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 30px var(--color-gold-glow);
+  }
+
+  .noise-bg {
+    position: relative;
+  }
+  .noise-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .rtl { direction: rtl; }
+  .ltr { direction: ltr; }
 }

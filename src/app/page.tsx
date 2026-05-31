@@ -454,7 +454,7 @@ ${formData.message ? `✉️ *تفاصيل إضافية:* ${formData.message}` :
                           placeholder="أخبرنا عن اهتماماتك..."
                         />
                       </div>
-                      <Button variant="primary" className="w-full text-center py-3">
+                      <Button type="submit" variant="primary" className="w-full text-center py-3">
                         إرسال طلب التقييم المجاني
                       </Button>
                     </form>

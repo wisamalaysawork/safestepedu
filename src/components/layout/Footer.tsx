@@ -44,13 +44,20 @@ export function Footer() {
               خطوتك آمنة نحو المستقبل — نرافقك من التقديم حتى الوصول والاستقرار في جامعات روسيا
             </p>
             <div className="flex gap-3 mt-6">
-              {["FB", "IG", "TG", "WA"].map((s, i) => (
+              {[
+                { name: "FB", href: "#" },
+                { name: "IG", href: "#" },
+                { name: "TG", href: "#" },
+                { name: "WA", href: "https://wa.me/970569277490" }
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.name}
+                  href={s.href}
+                  target={s.name === "WA" ? "_blank" : undefined}
+                  rel={s.name === "WA" ? "noopener noreferrer" : undefined}
                   className="w-10 h-10 rounded-xl bg-white/[0.04] flex items-center justify-center hover:bg-gold-500/20 hover:text-gold-400 transition-all duration-300 text-xs text-white/30 border border-white/[0.06]"
                 >
-                  {s}
+                  {s.name}
                 </a>
               ))}
             </div>

@@ -104,8 +104,7 @@ export default function HomePage() {
     e.preventDefault();
 
     const whatsappNumber = "970569277490";
-    const messageText = `السلام عليكم ورحمة الله وبركاته،
-أود الحصول على تقييم مجاني لفرص قبولي الدراسي في روسيا. تفاصيل طلبي هي:
+    const messageText = `أود الحصول على تقييم مجاني لفرص قبولي الدراسي في روسيا. تفاصيل طلبي هي:
 
 👤 *الاسم الكامل:* ${formData.name}
 📞 *رقم الهاتف:* ${formData.phone}

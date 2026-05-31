@@ -102,6 +102,22 @@ export default function HomePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const whatsappNumber = "970569277490";
+    const messageText = `السلام عليكم ورحمة الله وبركاته،
+أود الحصول على تقييم مجاني لفرص قبولي الدراسي في روسيا. تفاصيل طلبي هي:
+
+👤 *الاسم الكامل:* ${formData.name}
+📞 *رقم الهاتف:* ${formData.phone}
+🎓 *المؤهل العلمي الحالي:* ${formData.education || "غير محدد"}
+${formData.message ? `✉️ *تفاصيل إضافية:* ${formData.message}` : ""}
+
+يرجى التواصل معي لإتمام التقييم. شكراً لكم.`;
+
+    const encodedMessage = encodeURIComponent(messageText);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappUrl, "_blank");
     setSubmitted(true);
   };
 
